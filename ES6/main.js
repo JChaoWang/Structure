@@ -4,19 +4,18 @@ class MathAdd {
     this.x = x
     this.y = y
   }
-  add() {
+  add () {
     return this.x + this.y
   }
 }
 const a = new MathAdd(1, 3)
 console.log(a.add())
-
 // class继承方式
 class Animal {
   constructor(name) {
     this.name = name
   }
-  eat() {
+  eat () {
     console.log(`${this.name} eat`)
   }
 }
@@ -26,7 +25,7 @@ class Dog extends Animal {
     super(name)
     this.name = name
   }
-  say() {
+  say () {
     console.log(`${this.name} say`)
   }
 }
@@ -36,7 +35,7 @@ dog.eat()
 dog.say()
 
 // promise函数
-function loadImg(src) {
+function loadImg (src) {
   const promise = new Promise(function (resolve, reject) {
     let img = document.createElement('img')
     img.onload = () => {

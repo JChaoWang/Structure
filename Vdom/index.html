@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vdom</title>
+</head>
+
+<body>
+  <div id="container"></div>
+  <button id="btn-change">change</button>
+</body>
+<script>
+  /****
+ * 什么是vdom，虚拟dom
+ * 用js模拟dom结构
+ * dom变化的对比，放在JS层来做
+ * 提高重绘性能
+ */
+
+  /****
+   * vdom的如何应用，核心API
+   * 介绍snabbdom
+   * h函数--h('tag标签', {属性值}, str/array(内容相关的))函数的就是定义一个vdom节点
+   * patch函数--patch(node/vnode, newVnode)用于更新需要修改的部分，即diff算法相关的，首次用真是node节点，后续为变更
+   * 核心API
+   */
+
+  /****
+   * diff算法
+   * 去繁就简
+   * vdom为何使用diff算法
+   * diff算法实现流程
+   * diff算法非常复杂，实现难度很大，源码量很大
+   * 去繁就简，讲明白核心流程，不关心细节
+   * 总结：
+   * diff算法，是linux的基础命令
+   * vdom中应用diff算法就是为了找出需要更新的节点
+   * diff实现，patch(container, vnode) patch(vnode, newVnode)
+   * 核心逻辑,createElement 和 updateChildren
+   */
+
+  /****
+   * diff算法总结：
+   * diff算法，是linux的基础命令
+   * vdom中应用diff算法就是为了找出需要更新的节点
+   * diff实现，patch(container, vnode) patch(vnode, newVnode)
+   * 核心逻辑,createElement 和 updateChildren
+  */
+</script>
+
+</html>

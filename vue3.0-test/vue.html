@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue3.0-test</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="value">
+    <p>双向绑定：{{ value }}</p>
+  </div>
+</body>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+  const { createApp } = Vue
+  const app = {
+    data() {
+      return {
+        value: '3333'
+      }
+    },
+    mounted() {
+      console.log(this.value)
+    }
+  }
+  createApp(app).mount('#app')
+</script>
+
+</html>

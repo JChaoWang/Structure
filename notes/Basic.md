@@ -299,3 +299,55 @@ function inheritProperty(subType, superType) {
 - module：模块化。
 
 ### 介绍一下Vue的响应式系统
+
+- [Vue的响应式系统](https://segmentfault.com/a/1190000019700618)
+
+### computed与watch的区别
+
+- computed只有当页面数据变化时才会计算，当数据没有变化时，它会读取缓存。而watch每次都需要执行函数，methods也是每次都需要执行
+- 数据变化时执行异步操作，这个时候使用watch是合适的
+
+### Vue的路由实现：hash模式和history模式
+
+- hash模式背后的原理是onhashchange事件
+- history api可以分为两大部分，切换和修改，参考MDN，切换历史状态包括back、forward、go 三个方法，对应浏览器的前进，后退，跳转操作。两个方法,这两个方法接收三个参数:stateObj,title,url。通过pushstate把页面的状态保存在state对象中，当页面的url再变回这个url时，可以通过event.state取到这个state对象，从而可以对页面状态进行还原，这里的页面状态就是页面字体颜色，其实滚动条的位置，阅读进度，组件的开关的这些页面状态都可以存储到state的里面。
+
+### Vue路由的钩子函数
+
+#### 全局钩子
+
+- 主要包括beforeEach和aftrEach
+
+#### 单个路由里面的钩子
+
+- 主要用于写某个指定路由跳转时需要执行的逻辑
+
+#### 组件路由
+
+- 主要包括 beforeRouteEnter和beforeRouteUpdate ,beforeRouteLeave,这几个钩子都是写在组件里面也可以传三个参数(to,from,next),作用与前面类似.
+
+## 浏览器
+
+### 浏览器下事件循环(Event Loop)
+
+- [事件循环](https://zhuanlan.zhihu.com/p/145383822)
+
+### 从输入 url 到展示的过程
+
+- [流程](https://blog.csdn.net/qq_32657025/article/details/79672419)
+
+### V8垃圾回收机制
+
+- [垃圾回收机制](https://blog.csdn.net/wu_xianqiang/article/details/90736087)
+
+### HTTPS和HTTP的区别
+
+- [HTTPS和HTTP的区别](https://blog.csdn.net/qq_35642036/article/details/82788421)
+
+### 浏览器缓存
+
+- [浏览器缓存](https://www.jianshu.com/p/54cc04190252)
+
+### 如何解决跨域
+
+- [如何解决跨域](https://segmentfault.com/a/1190000011145364)

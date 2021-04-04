@@ -1,0 +1,54 @@
+<style>
+  .cell {
+    display: inline-block;
+    width: 99px;
+    height: 99px;
+    line-height: 101px;
+    background: gray;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    vertical-align: top;
+  }
+
+  #container {
+    width: 701px;
+  }
+</style>
+
+<div id="container"></div>
+<button onclick="localStorage['map'] = JSON.stringify(map)">save</button>
+
+<script>
+  let container = document.getElementById('container')
+  let map = localStorage['map'] ? JSON.parse(localStorage['map']) : Array(35).fill(0)
+  for (let i = 0; i < 7; i++) {
+    for (let j = 0; j < 5; j++) {
+      let cell = document.createElement('div')
+      cell.classList.add("cell")
+
+      if (map[7 * i + j] == 1) {
+        cell.style.backgroundColor = "black"
+      } else {
+        cell.style.backgroundColor = "gray"
+      }
+
+      cell.addEventListener('mousemove', () => {
+        if (mousedown) {
+          map[7 * i + j] = map[7 * i + j] == 1 ? 0 : 1
+          if (map[7 * i + j] == 1) {
+            cell.style.backgroundColor = "black"
+          } else {
+            cell.style.backgroundColor = "gray"
+          }
+        }
+      })
+      container.appendChild(cell)
+    }
+  }
+  let mousedown = false
+  let clear = false
+  document.addEventListener("mousedown", e => {
+    mousedown = true
+  })
+  document.addEventListener('mouseup', () => mousedown = false)
+</script>

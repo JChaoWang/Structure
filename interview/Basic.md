@@ -737,3 +737,299 @@ store实例上有数据，有方法，方法改变的都是store实例上的数�
 
 > watch 主要作用是监听某个数据值的变化。和计算属性相比除了没有缓存，作用是一样的。
 > 借助 watch 还可以做一些特别的事情，例如监听页面路由，当页面跳转时，我们可以做相应的权限控制，拒绝没有权限的用户访问页面。
+
+### 写 React/Vue 项目时为什么要在组件中写 key，其作用是什么？
+
+> key 的作用是为了在 diff 算法执行时更快的找到对应的节点，提高 diff 速度。
+
+> vue 和 react 都是采用 diff 算法来对比新旧虚拟节点，从而更新节点。在 vue 的 diff 函数中。可以先了解一下 diff 算法。
+
+> 在交叉对比的时候，当新节点跟旧节点头尾交叉对比没有结果的时候，会根据新节点的 key 去对比旧节点数组中的 key，从而找到相应旧节点（这里对应的是一个 key => index 的 map 映射）。如果没找到就认为是一个新增节点。而如果没有 key，那么就会采用一种遍历查找的方式去找到对应的旧节点。一种一个 map 映射，另一种是遍历查找。相比而言。map 映射的速度更快。
+
+```
+// vue 项目 src/core/vdom/patch.js -488 行
+// oldCh 是一个旧虚拟节点数组，
+ if (isUndef(oldKeyToIdx)) oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx)
+ idxInOld = isDef(newStartVnode.key)
+ ? oldKeyToIdx[newStartVnode.key]
+ : findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx)
+```
+
+```
+function createKeyToOldIdx (children, beginIdx, endIdx) {
+  let i, key
+  const map = {}
+  for (i = beginIdx; i <= endIdx; ++i) {
+    key = children[i].key
+    if (isDef(key)) map[key] = i
+  }
+  return map
+}
+```
+
+```
+// sameVnode 是对比新旧节点是否相同的函数
+ function findIdxInOld (node, oldCh, start, end) {
+  for (let i = start; i < end; i++) {
+    const c = oldCh[i]
+    if (isDef(c) && sameVnode(node, c)) return i
+    }
+  }
+}
+```
+
+### 移动端触摸事件
+
+> ①touchstart：当手指触碰到屏幕的时候触发 ②touchmove：当手指在屏幕上滑动的时候触发 ③touchend：当手指离开屏幕的时候时候触发 ④touchcancel事件：当系统停止跟踪触摸的时候触发(这个事件很少会用，一般不做深入研究)。 电话接入或者弹出信息等其他事件切入 event：
+> touches：表示当前跟踪的触摸操作的touch对象的数组。
+> targetTouches：特定于事件目标的Touch对象的数组。
+> changeTouches：表示自上次触摸以来发生了什么改变的Touch对象的数组。
+> 每个touch对象包含的属性
+> clientX：触摸目标在视口中的x坐标。
+> clientY：触摸目标在视口中的y坐标。
+> identifier：标识触摸的唯一ID。
+> pageX：触摸目标在页面中的x坐标。
+> pageY：触摸目标在页面中的y坐标。
+> screenX：触摸目标在屏幕中的x坐标。
+> screenY：触摸目标在屏幕中的y坐标。
+> target：触目的DOM节点目标。
+
+### 各种排序实现
+
+```
+// 冒泡排序: 比较两个相邻的项，如果第一个大于第二个则交换他们的位置,元素项向上移动至正确的顺序，就好像气泡往上冒一样
+冒泡demo:
+function bubbleSort(arr) {
+ let len = arr.length;
+ for (let i = 0; i < len; i++) {
+ for (let j = 0; j < len - 1 - i; j++) {
+ if (arr[j] > arr[j+1]) { //相邻元素两两对比
+ [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
+ }
+ }
+ }
+ return arr;
+}
+// 1) 首先，在数组中选择一个中间项作为主元
+// 2) 创建两个指针，左边的指向数组第一个项，右边的指向最后一个项，移动左指针，直到找到一个比主元大的项，接着，移动右边的指针，直到找到一个比主元小的项，然后交换它们。重复这个过程，直到
+// 左侧的指针超过了右侧的指针。这个使比主元小的都在左侧，比主元大的都在右侧。这一步叫划分操作
+// 3) 接着，算法对划分后的小数组（较主元小的值组成的的小数组， 以及较主元大的值组成的小数组）重复之前的两个步骤，直到排序完成
+快排demo:
+function quickSort(arr, left, right) {
+ let len = arr.length;
+ let partitionIndex;
+ left = typeof left !== 'number' ? 0 : left;
+ right = typeof right !== 'number' ? len - 1 : right;
+ if (left < right) {
+ partitionIndex = partition(arr, left, right);
+ quickSort(arr, left, partitionIndex - 1);
+ quickSort(arr, partitionIndex + 1, right);
+ }
+ return arr;
+}
+function partition(arr, left, right) { //分区操作
+ let pivot = left; //设定基准值（pivot）
+ let index = pivot + 1;
+ for (let i = index; i <= right; i++) {
+ if (arr[i] < arr[pivot]) {
+ [arr[i], arr[index]] = [arr[index], arr[i]];
+ index++;
+ }
+ }
+ [arr[pivot], arr[index - 1]] = [arr[index - 1], arr[pivot]];
+ return index - 1;
+}
+// 选择排序：大概思路是找到最小的放在第一位，找到第二小的放在第二位，以此类推 算法复杂度O(n^2)
+选择demo:
+function selectionSort(arr) {
+ let len = arr.length;
+ let minIndex;
+ for (let i = 0; i < len - 1; i++) {
+  minIndex = i;
+  for (let j = i + 1; j < len; j++) {
+   if (arr[j] < arr[minIndex]) { //寻找最小的数
+    minIndex = j; //将最小数的索引保存
+   }
+  }
+  [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+ }
+return arr;
+}
+// 插入排序：每次排一个数组项，假设数组的第一项已经排序，接着，把第二项与第一项进行对比，第二项是该插入到第一项之前还是之后，第三项是该插入到第一项之前还是第一项之后还是第三项
+插入demo:
+function insertionSort(arr) {
+ let len = arr.length;
+ let preIndex, current;
+ for (let i = 1; i < len; i++) {
+  preIndex = i - 1;
+  current = arr[i];
+  while (preIndex >= 0 && arr[preIndex] > current) {
+   arr[preIndex + 1] = arr[preIndex];
+   preIndex--;
+  }
+  arr[preIndex + 1] = current;
+ }
+ return arr;
+}
+// 归并排序：Mozilla Firefox 使用归并排序作为Array.prototype.sort的实现，而chrome使用快速排序的一个变体实现的,前面三种算法性能不好，但归并排序性能不错 算法复杂度O(nlog^n)
+// 归并排序是一种分治算法。本质上就是把一个原始数组切分成较小的数组，直到每个小数组只有一个位置，接着把小数组归并成较大的数组，在归并过程中也会完成排序，直到最后只有一个排序完毕的大数组
+归并demo:
+function mergeSort(arr) { //采用自上而下的递归方法
+ let len = arr.length;
+ if(len < 2) {
+ return arr;
+ }
+ let middle = Math.floor(len / 2),
+ left = arr.slice(0, middle),
+ right = arr.slice(middle);
+ return merge(mergeSort(left), mergeSort(right));
+}
+function merge(left, right){
+ let result = [];
+ while (left.length && right.length) {
+ if (left[0] <= right[0]) {
+ result.push(left.shift());
+ } else {
+ result.push(right.shift());
+ }
+ }
+ result.push(...left);
+ result.push(...right);
+ return result;
+}
+//堆排序：堆排序把数组当中二叉树来排序而得名。
+// 1）索引0是树的根节点；2）除根节点为，任意节点N的父节点是N/2；3）节点L的左子节点是2*L；4）节点R的右子节点为2*R + 1
+// 本质上就是先构建二叉树，然后把根节点与最后一个进行交换，然后对剩下对元素进行二叉树构建，进行交换，直到剩下最后一个
+堆demo:
+var len; //因为声明的多个函数都需要数据长度，所以把len设置成为全局变量
+function buildMaxHeap(arr) { //建立大顶堆
+ len = arr.length;
+ for (let i = Math.floor(len / 2); i >= 0; i--) {
+ heapify(arr, i);
+ }
+}
+function heapify(arr, i) { //堆调整
+ let left = 2 * i + 1;
+ let right = 2 * i + 2;
+ let largest = i;
+ if (left < len && arr[left] > arr[largest]) {
+ largest = left;
+ }
+ if (right < len && arr[right] > arr[largest]) {
+ largest = right;
+ }
+ if (largest !== i) {
+ [arr[i], arr[largest]] = [arr[largest], arr[i]];
+ heapify(arr, largest);
+ }
+}
+function heapSort(arr) {
+ buildMaxHeap(arr);
+ for (let i = arr.length - 1; i > 0; i--) {
+ [arr[0],arr[i]]=[arr[i],arr[0]];
+ len--;
+ heapify(arr, 0);
+ }
+ return arr;
+}
+```
+
+### 二分查找
+
+> 思路 （1）首先，从有序数组的中间的元素开始搜索，如果该元素正好是目标元素（即要查找的元素），则搜索过程结束，否则进行下一步。 （2）如果目标元素大于或者小于中间元素，则在数组大于或小于中间元素的那一半区域查找，然后重复第一步的操作。 （3）如果某一步数组为空，则表示找不到目标元素。
+
+```
+// 非递归算法
+function binary_search(arr, key) {
+ let low = 0;
+ let high = arr.length - 1;
+ while(low <= high){
+ let mid = parseInt((high + low) / 2);
+ if(key === arr[mid]){
+ return mid;
+ }else if(key > arr[mid]){
+ low = mid + 1;
+ }else if(key < arr[mid]){
+ high = mid -1;
+ }else{
+ return -1;
+ }
+ }
+}
+ 
+// 递归算法
+function binary_search(arr,low, high, key) {
+ if (low > high){
+ return -1;
+ }
+ let mid = parseInt((high + low) / 2);
+ if(arr[mid] === key){
+ return mid;
+ }else if (arr[mid] > key){
+ high = mid - 1;
+ return binary_search(arr, low, high, key);
+ }else if (arr[mid] < key){
+ low = mid + 1;
+ return binary_search(arr, low, high, key);
+ }
+};
+```
+
+### 二叉树相关
+
+```
+创建
+function Node(data,left,right){
+ this.data = data;//数值
+ this.left = left;//左节点
+ this.right = right;//右节点
+};
+插入二叉树
+function insert(node,data){
+ //创建一个新的节点
+ let newNode = new Node(data,null,null);
+ //判断是否存在根节点，没有将新节点存入
+ if(node == null){
+  node = newNode;
+ }else{
+  //获取根节点
+  let current = node;
+  let parent;
+  while(true){
+   //将当前节点保存为父节点
+   parent = current;
+   //将小的数据放在左节点
+   if(data < current.data){
+    //获取当前节点的左节点
+    //判断当前节点下的左节点是否有数据
+    current = current.left;
+    if(current == null){
+     //如果没有数据将新节点存入当前节点下的左节点
+     parent.left = newNode;
+     break;
+    }
+   }else{
+    current = current.right;
+    if(current == null){
+     parent.right = newNode;
+     break;
+    }
+   }
+  } 
+ }
+}
+翻转二叉树
+function invertTree(node) {
+ if (node !== null) {
+  node.left, node.right = node.left, node.right;
+  invertTree(node.left);
+  invertTree(node.right);
+ }
+ return node;
+}
+复制代码
+查找链表中倒数第k个结点
+2个思路
+1：先遍历出长度，然后查找长度-k+1的值
+2：2个指针，一个指针先走k-1，然后两个一起走到底部，后者就是结果
+```

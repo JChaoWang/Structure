@@ -18,6 +18,15 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.txt$/,
+        use: {
+          loader: path.resolve(__dirname, './txt-loader.js'),
+          options: {
+            name: 'wade',
+          },
+        },
+      },
     ],
   },
   plugins: [

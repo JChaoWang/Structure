@@ -1,0 +1,209 @@
+{
+  "2020-09-01": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-02": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-03": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-04": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-07": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-08": {
+    "checkInTime": "09:05",
+    "CheckInState": "迟到",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-09": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-10": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-11": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-12": {
+    "checkInTime": null,
+    "CheckInState": "缺卡",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-14": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-15": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "22:00",
+    "CheckOutState": "加班",
+    "CheckOutRemark": null
+  },
+  "2020-09-16": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-17": {
+    "checkInTime": null,
+    "CheckInState": "缺卡",
+    "CheckInRemark": null,
+    "checkOutTime": null,
+    "CheckOutState": "缺卡",
+    "CheckOutRemark": null
+  },
+  "2020-09-18": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-19": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-20": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-21": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-22": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-23": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-24": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-25": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-26": {
+    "checkInTime": "08:30",
+    "CheckInState": "补卡",
+    "CheckInRemark": "外出开会",
+    "checkOutTime": "18:00",
+    "CheckOutState": "补卡",
+    "CheckOutRemark": "外出开会"
+  },
+  "2020-09-28": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-29": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "18:15",
+    "CheckOutState": "正常",
+    "CheckOutRemark": null
+  },
+  "2020-09-30": {
+    "checkInTime": "08:15",
+    "CheckInState": "正常",
+    "CheckInRemark": null,
+    "checkOutTime": "16:23",
+    "CheckOutState": "早退",
+    "CheckOutRemark": null
+  }
+}

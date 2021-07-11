@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PreloadJs加载图片</title>
+</head>
+<body>
+<div id="img"></div>
+<h2>loading...<span id="progress">0%</span></h2>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/PreloadJS/1.0.1/preloadjs.min.js"></script>
+<script>
+var queue = new createjs.LoadQueue(false);
+//监听进度事件
+queue.on("progress", function(e){
+var proNum = Math.ceil(e.progress * 100);
+$("#progress").html( proNum + "%");
+});
+//监听完成事件
+queue.on("complete", function(){
+console.log("加载完成");
+console.log(queue.getResult("img1"));
+});
+//加载单个图片
+queue.loadFile("https://img2.baidu.com/it/u=3566088443,3713209594&fm=26&fmt=auto&gp=0.jpg");
+//加载单个图片,带id
+queue.loadFile({id: "img1", src:"https://img2.baidu.com/it/u=3566088443,3713209594&fm=26&fmt=auto&gp=0.jpg"});
+//加载多个文件,指定目录下
+queue.loadManifest([
+"https://img2.baidu.com/it/u=3566088443,3713209594&fm=26&fmt=auto&gp=0.jpg",
+"https://img2.baidu.com/it/u=3566088443,3713209594&fm=26&fmt=auto&gp=0.jpg",
+"https://img2.baidu.com/it/u=3566088443,3713209594&fm=26&fmt=auto&gp=0.jpg"
+], true, "images/");
+queue.on("fileload", function (e) {
+document.body.appendChild(e.result);
+});
+</script>
+</body>
+</html>
